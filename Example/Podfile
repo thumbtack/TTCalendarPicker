@@ -1,0 +1,13 @@
+use_frameworks!
+inhibit_all_warnings!
+
+target 'TTCalendarPicker_Example' do
+  pod 'TTCalendarPicker', :path => '../'
+  pod 'SnapKit'
+
+  target 'TTCalendarPicker_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+  end
+end

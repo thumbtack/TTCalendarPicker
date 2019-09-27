@@ -1,0 +1,6 @@
+framework module Pods_TTCalendarPicker_Example {
+  umbrella header "Pods-TTCalendarPicker_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
