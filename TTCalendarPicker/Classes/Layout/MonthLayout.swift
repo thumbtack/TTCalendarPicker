@@ -119,16 +119,16 @@ class MonthLayout {
     private var cellHeight: CGFloat {
         switch style.cellHeightMode {
         case let .aspectRatio(aspectRatio):
-            return round(aspectRatio * (cellWidth))
+            return (aspectRatio * (cellWidth))
         case let .fixed(fixedHeight):
-            return round(fixedHeight)
+            return (fixedHeight)
         }
     }
 
     private var cellWidth: CGFloat {
         let monthWidth = layoutWidth - style.contentInsets.left - style.contentInsets.right
         let backgroundAreaWidth = style.cellSpacingX * CGFloat(weekLength + 1)
-        return round((monthWidth - backgroundAreaWidth) / CGFloat(weekLength))
+        return ((monthWidth - backgroundAreaWidth) / CGFloat(weekLength))
     }
 
     private func offset(forRow row: Int) -> CGFloat {

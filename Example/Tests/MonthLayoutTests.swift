@@ -102,7 +102,7 @@ class MonthLayoutTests: XCTestCase {
         XCTAssertEqual(aspectFrames, items.map({ dynamicAspect.frameForCell(at: $0) }))
 
         for frame in fixedFrames + aspectFrames {
-            XCTAssertEqual(frame.width, 48, accuracy: 0)
+            XCTAssertEqual(frame.width, 48, accuracy: 1)
         }
 
         for frame in fixedFrames {
@@ -110,24 +110,24 @@ class MonthLayoutTests: XCTestCase {
         }
 
         for frame in aspectFrames {
-            XCTAssertEqual(frame.height, round(frame.width * cellAspectRatio))
+            XCTAssertEqual(frame.height, frame.width * cellAspectRatio)
         }
 
-        XCTAssertEqual(fixedFrames[0].minX, 17, accuracy: 0)
-        XCTAssertEqual(fixedFrames[2].minX, 311, accuracy: 0)
-        XCTAssertEqual(fixedFrames[5].minX, 213, accuracy: 0)
+        XCTAssertEqual(fixedFrames[0].minX, 17, accuracy: 1)
+        XCTAssertEqual(fixedFrames[2].minX, 311, accuracy: 1)
+        XCTAssertEqual(fixedFrames[5].minX, 213, accuracy: 1)
 
-        XCTAssertEqual(aspectFrames[0].minX, 17, accuracy: 0)
-        XCTAssertEqual(aspectFrames[2].minX, 311, accuracy: 0)
-        XCTAssertEqual(aspectFrames[5].minX, 213, accuracy: 0)
+        XCTAssertEqual(aspectFrames[0].minX, 17, accuracy: 1)
+        XCTAssertEqual(aspectFrames[2].minX, 311, accuracy: 1)
+        XCTAssertEqual(aspectFrames[5].minX, 213, accuracy: 1)
 
-        XCTAssertEqual(fixedFrames[0].minY, 38, accuracy: 0)
-        XCTAssertEqual(fixedFrames[2].minY, 81, accuracy: 0)
-        XCTAssertEqual(fixedFrames[5].minY, 210, accuracy: 0)
+        XCTAssertEqual(fixedFrames[0].minY, 38, accuracy: 1)
+        XCTAssertEqual(fixedFrames[2].minY, 81, accuracy: 1)
+        XCTAssertEqual(fixedFrames[5].minY, 210, accuracy: 1)
 
-        XCTAssertEqual(aspectFrames[0].minY, 38, accuracy: 0)
-        XCTAssertEqual(aspectFrames[2].minY, 81, accuracy: 0)
-        XCTAssertEqual(aspectFrames[5].minY, 210, accuracy: 0)
+        XCTAssertEqual(aspectFrames[0].minY, 38, accuracy: 1)
+        XCTAssertEqual(aspectFrames[2].minY, 81, accuracy: 1)
+        XCTAssertEqual(aspectFrames[5].minY, 210, accuracy: 1)
     }
 
     func testFrameForMonthHeader() {
@@ -144,13 +144,13 @@ class MonthLayoutTests: XCTestCase {
         for frame in [fixedFixed.backgroundFrame, fixedAspect.backgroundFrame, dynamicFixed.backgroundFrame, dynamicAspect.backgroundFrame] {
             XCTAssertEqual(frame.minX, 16.0)
             XCTAssertEqual(frame.minY, 37.0)
-            XCTAssertEqual(frame.width, 344.0)
+            XCTAssertEqual(frame.width, 343.0)
         }
 
-        XCTAssertEqual(fixedFixed.backgroundFrame.maxY, 296, accuracy: 0)
-        XCTAssertEqual(fixedAspect.backgroundFrame.maxY, 296, accuracy: 0)
-        XCTAssertEqual(dynamicFixed.backgroundFrame.maxY, 253, accuracy: 0)
-        XCTAssertEqual(dynamicAspect.backgroundFrame.maxY, 253, accuracy: 0)
+        XCTAssertEqual(fixedFixed.backgroundFrame.maxY, 296, accuracy: 1)
+        XCTAssertEqual(fixedAspect.backgroundFrame.maxY, 296, accuracy: 1)
+        XCTAssertEqual(dynamicFixed.backgroundFrame.maxY, 253, accuracy: 1)
+        XCTAssertEqual(dynamicAspect.backgroundFrame.maxY, 253, accuracy: 1)
     }
 
     func testDateForCell() {
