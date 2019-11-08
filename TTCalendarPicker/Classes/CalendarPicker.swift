@@ -51,6 +51,7 @@ public class CalendarPicker: UIView {
 
     private var monthLayoutCache = NSCache<NSNumber, MonthLayout>()
     private var monthCacheNeedsUpdate = true
+    private var pickerNeedsReload = false
 
     /// Initializes a new calendarPicker
     /// Parameters:
@@ -122,7 +123,12 @@ public class CalendarPicker: UIView {
             invalidateHeightAndNotifyDelegate()
         }
 
-        recenterGrid()
+        if pickerNeedsReload {
+            pickerNeedsReload = false
+            reloadData()
+        } else {
+            recenterGrid()
+        }
     }
 
     override public var bounds: CGRect {
@@ -155,6 +161,7 @@ public extension CalendarPicker {
         set {
             calendarStyle.calendarHeightMode = newValue
             setMonthCacheNeedsUpdate()
+            setPickerNeedsReload()
         }
     }
 
@@ -217,6 +224,11 @@ public extension CalendarPicker {
             let datesAtMidnight = newValue.map({ calendar.midnight(on: $0) })
             selectedDateSet = Set(datesAtMidnight)
         }
+    }
+
+    var allowsSelection: Bool {
+        get { return collectionView.allowsSelection }
+        set { collectionView.allowsSelection = newValue }
     }
 
     /// Returns whether multiple selections are allowed.  Default: false
@@ -539,6 +551,11 @@ private extension CalendarPicker {
         setNeedsLayout()
     }
 
+    func setPickerNeedsReload() {
+        pickerNeedsReload = true
+        setNeedsLayout()
+    }
+
     var currentMonthOffset: Int {
         let currentLayout = monthLayout(forSection: .currentMonth)
         let currentComponents = DateComponents(year: currentLayout.year, month: currentLayout.month)
@@ -568,7 +585,7 @@ private extension CalendarPicker {
 
             offset -= 1
         } else if visibleRect.maxX == collectionView.contentSize.width {
-            guard additionalMonthCount == nil || additionalMonthCount! < currentMonthOffset else {
+            guard additionalMonthCount == nil || additionalMonthCount! > currentMonthOffset else {
                 scrollToVisibleMonth(animated: true)
                 return
             }

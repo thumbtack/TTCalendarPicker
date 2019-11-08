@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TTCalendarPicker'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'A lightweight, customizable, infinite scrolling calendar in Swift'
   s.description      = <<-DESC
 A lightweight, highly customizable, infinite scrolling calendar picker developed by the iOS teams at Thumbtack, Inc.
