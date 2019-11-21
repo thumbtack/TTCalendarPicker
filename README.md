@@ -6,7 +6,7 @@
 
 <p align="center">
    <a href="./images/thumbtack_demo.png">
-      <img src="./images/thumbtack_demo.png" height="400px">
+      <img src="./images/thumbtack_demo.png">
    </a>
 </p>
 
