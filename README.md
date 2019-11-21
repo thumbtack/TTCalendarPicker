@@ -4,6 +4,12 @@
 [![License](https://img.shields.io/cocoapods/l/TTCalendarPicker.svg?style=flat)](https://cocoapods.org/pods/TTCalendarPicker)
 [![Platform](https://img.shields.io/cocoapods/p/TTCalendarPicker.svg?style=flat)](https://cocoapods.org/pods/TTCalendarPicker)
 
+<p align="center">
+   <a href="./images/thumbtack_demo.png">
+      <img src="./images/thumbtack_demo.png" height="400px">
+   </a>
+</p>
+
 TTCalendarPicker is a lightweight, highly configurable, infinite scrolling calendar picker view.  TTCalendarPicker was developed by the
 iOS teams at Thumbtack, Inc and currently drives our styled calendar picker.  While we are unlikely to add requested features that we
 don't plan on using within our own apps, we will be actively fixing bugs as they are found.
