@@ -22,7 +22,7 @@ A lightweight, highly customizable, infinite scrolling calendar picker developed
 
   s.ios.deployment_target = '10.0'
 
-  s.swift_version    = '5'
+  s.swift_version    = '5.0'
 
   s.source_files = 'TTCalendarPicker/Classes/**/*'
   s.dependency 'SnapKit'
