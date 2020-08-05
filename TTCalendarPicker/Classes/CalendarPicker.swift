@@ -105,7 +105,8 @@ public class CalendarPicker: UIView {
         collectionView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             make.bottom.lessThanOrEqualToSuperview()
-            heightConstraint = make.height.equalTo(0).priority(.high).constraint
+            //  Higher than defaultHigh priority to avoid ambiguity with compression/hugging priority of contents.
+            heightConstraint = make.height.equalTo(0).priority(ConstraintPriority(875.0)).constraint
         }
     }
 
