@@ -1,9 +1,5 @@
 # TTCalendarPicker
 
-[![Version](https://img.shields.io/cocoapods/v/TTCalendarPicker.svg?style=flat)](https://cocoapods.org/pods/TTCalendarPicker)
-[![License](https://img.shields.io/cocoapods/l/TTCalendarPicker.svg?style=flat)](https://cocoapods.org/pods/TTCalendarPicker)
-[![Platform](https://img.shields.io/cocoapods/p/TTCalendarPicker.svg?style=flat)](https://cocoapods.org/pods/TTCalendarPicker)
-
 <p align="center">
    <a href="./images/thumbtack_demo.png">
       <img src="./images/thumbtack_demo.png">
@@ -16,22 +12,28 @@ don't plan on using within our own apps, we will be actively fixing bugs as they
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.  Then build and run the 
-TTCalendarPicker-Example project.
+To run the example project, clone the repo then build and run the TTCalendarPicker-Example project.
 
 ## Requirements
 
-- iOS 10.0+
-- Xcode 10.0+
-- Swift 4.0+
+- iOS 13.0+
+- Xcode 11.0+
+- Swift 5.0+
 
 ## Installation
 
-TTCalendarPicker is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+### Swift Package Manager
 
-```ruby
-pod 'TTCalendarPicker'
+[Swift Package Manager](https://swift.org/package-manager/) is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
+
+> Xcode 11+ is required to build TTCalendarPicker using Swift Package Manager.
+
+To integrate TTCalendarPicker into your Xcode project using Swift Package Manager, add it to the dependencies value of your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/thumbtack/TTCalendarPicker.git", .upToNextMajor(from: "0.2.0"))
+]
 ```
 
 # Usage
