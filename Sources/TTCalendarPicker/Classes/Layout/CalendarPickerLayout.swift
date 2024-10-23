@@ -14,7 +14,7 @@
 
 import UIKit
 
-protocol CalendarPickerLayoutDataSource: AnyObject {
+@MainActor protocol CalendarPickerLayoutDataSource: AnyObject {
     func monthLayout(forSection section: CalendarPickerLayout.Section) -> MonthLayout
 }
 

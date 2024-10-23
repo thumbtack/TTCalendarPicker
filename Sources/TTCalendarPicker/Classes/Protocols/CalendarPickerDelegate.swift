@@ -14,7 +14,7 @@
 
 import UIKit
 
-@objc public protocol CalendarPickerDelegate: AnyObject {
+@MainActor @objc public protocol CalendarPickerDelegate: AnyObject {
     /**
      Tells the delegate that calendar picker's height is about to change.
 

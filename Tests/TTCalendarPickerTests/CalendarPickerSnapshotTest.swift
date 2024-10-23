@@ -18,22 +18,24 @@ import TTCalendarPicker
 import iOSSnapshotTestCase
 
 // Images generated with XCode 11, iPhone 8 (12.2)
-class CalendarPickerSnapshotTest: FBSnapshotTestCase {
+class CalendarPickerSnapshotTest: FBSnapshotTestCase, @unchecked Sendable {
     var calendar: Calendar!
     var today: Date!
     var controller: ExampleViewController!
     var calendarPicker: TestableCalendarPicker!
 
-    override func setUp() {
-        super.setUp()
-        calendar = Calendar(identifier: .gregorian)
-        today = calendar.date(from: DateComponents(year: 2019, month: 10, day: 19))!
-        calendarPicker = TestableCalendarPicker(date: today, calendar: calendar)
-        calendarPicker.frame = CGRect(x: 0, y: 0, width: 375, height: 600)
-        calendarPicker.today = today
-
-        controller = ExampleViewController(calendarPicker: calendarPicker)
-        calendarPicker.layoutIfNeeded()
+    override func setUp() async throws {
+        try await super.setUp()
+        await MainActor.run {
+            calendar = Calendar(identifier: .gregorian)
+            today = calendar.date(from: DateComponents(year: 2019, month: 10, day: 19))!
+            calendarPicker = TestableCalendarPicker(date: today, calendar: calendar)
+            calendarPicker.frame = CGRect(x: 0, y: 0, width: 375, height: 600)
+            calendarPicker.today = today
+            
+            controller = ExampleViewController(calendarPicker: calendarPicker)
+            calendarPicker.layoutIfNeeded()
+        }
     }
 
     override func tearDown() {
@@ -43,23 +45,23 @@ class CalendarPickerSnapshotTest: FBSnapshotTestCase {
         super.tearDown()
     }
 
-    func testDefaultConfiguration() {
+    @MainActor func testDefaultConfiguration() {
         verify()
     }
 
-    func testFixedHeight() {
+    @MainActor func testFixedHeight() {
         calendarPicker.calendarHeightMode = .fixed
         // A bit of a cheat, since the snapshot is taken before the collectionview fills in the additional cells
         calendarPicker.reloadData()
         verify()
     }
 
-    func testFixedHeightCells() {
+    @MainActor func testFixedHeightCells() {
         calendarPicker.cellHeightMode = .fixed(60)
         verify()
     }
 
-    func testDifferentAspectRatios() {
+    @MainActor func testDifferentAspectRatios() {
         calendarPicker.gridColor = .darkGray
 
         calendarPicker.cellHeightMode = .aspectRatio(0.2)
@@ -72,7 +74,7 @@ class CalendarPickerSnapshotTest: FBSnapshotTestCase {
         verify(identifier: "tall")
     }
 
-    func testDifferentInsets() {
+    @MainActor func testDifferentInsets() {
         calendarPicker.gridInsets = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
         verify(identifier: "top and bottom")
 
@@ -80,7 +82,7 @@ class CalendarPickerSnapshotTest: FBSnapshotTestCase {
         verify(identifier: "left and right")
     }
 
-    func testDifferentSpacing() {
+    @MainActor func testDifferentSpacing() {
         calendarPicker.gridColor = .darkGray
 
         calendarPicker.cellSpacingX = 0
@@ -100,7 +102,7 @@ class CalendarPickerSnapshotTest: FBSnapshotTestCase {
         verify(identifier: "columns")
     }
 
-    func testMonthHeaderHeight() {
+    @MainActor func testMonthHeaderHeight() {
         calendarPicker.monthHeaderHeight = 0
         verify(identifier: "none")
 
@@ -108,7 +110,7 @@ class CalendarPickerSnapshotTest: FBSnapshotTestCase {
         verify(identifier: "too much")
     }
 
-    func testSelectedDates() {
+    @MainActor func testSelectedDates() {
         let date = calendar.date(from: DateComponents(year: 2019, month: 10, day: 5))!
         calendarPicker.selectedDates = [date]
         verify(identifier: "one")
@@ -123,12 +125,12 @@ class CalendarPickerSnapshotTest: FBSnapshotTestCase {
         verify(identifier: "deselected")
     }
 
-    func testGridColor() {
+    @MainActor func testGridColor() {
         calendarPicker.gridColor = .purple
         verify(identifier: "purple")
     }
 
-    func testNavigation() {
+    @MainActor func testNavigation() {
         calendarPicker.scrollToNext(animated: false)
         verify(identifier: "scrollToNext")
 
@@ -142,7 +144,7 @@ class CalendarPickerSnapshotTest: FBSnapshotTestCase {
         verify(identifier: "previous")
     }
 
-    private func verify(identifier: String = "") {
+    @MainActor private func verify(identifier: String = "") {
         guard let view = controller.view else {
             XCTFail("Unable to get view from view controller")
             return

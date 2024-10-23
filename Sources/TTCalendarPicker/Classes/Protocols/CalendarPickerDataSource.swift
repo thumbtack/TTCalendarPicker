@@ -14,7 +14,7 @@
 
 import UIKit
 
-public protocol CalendarPickerDataSource: AnyObject {
+@MainActor public protocol CalendarPickerDataSource: AnyObject {
     /**
      Required. Asks the data source for a date cell for the given day
 
