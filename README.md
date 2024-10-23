@@ -16,9 +16,9 @@ To run the example project, clone the repo then build and run the TTCalendarPick
 
 ## Requirements
 
-- iOS 13.0+
-- Xcode 11.0+
-- Swift 5.0+
+- iOS 17.0+
+- Xcode 16.0+
+- Swift 6.0+
 
 ## Installation
 
@@ -26,7 +26,7 @@ To run the example project, clone the repo then build and run the TTCalendarPick
 
 [Swift Package Manager](https://swift.org/package-manager/) is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
 
-> Xcode 11+ is required to build TTCalendarPicker using Swift Package Manager.
+> Xcode 16+ is required to build TTCalendarPicker using Swift Package Manager.
 
 To integrate TTCalendarPicker into your Xcode project using Swift Package Manager, add it to the dependencies value of your `Package.swift`:
 

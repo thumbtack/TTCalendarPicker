@@ -17,7 +17,7 @@ import XCTest
 import iOSSnapshotTestCase
 @testable import TTCalendarPicker
 
-class CalendrPickerCallBackTest: XCTestCase {
+class CalendrPickerCallBackTest: XCTestCase, @unchecked Sendable {
     var calendar: Calendar!
     var today: Date!
     var controller: ExampleViewController!
@@ -25,20 +25,22 @@ class CalendrPickerCallBackTest: XCTestCase {
 
     private var callbackDelegate: CallbackDelegate!
 
-    override func setUp() {
-        super.setUp()
-        calendar = Calendar(identifier: .gregorian)
-        today = calendar.date(from: DateComponents(year: 2019, month: 10, day: 19))!
-        calendarPicker = TestableCalendarPicker(date: today, calendar: calendar)
-        calendarPicker.frame = CGRect(x: 0, y: 0, width: 375, height: 600)
-        calendarPicker.today = today
-        calendarPicker.calendarHeightMode = .dynamic
-
-        controller = ExampleViewController(calendarPicker: calendarPicker)
-
-        callbackDelegate = CallbackDelegate()
-        calendarPicker.delegate = callbackDelegate
-        calendarPicker.layoutIfNeeded()
+    override func setUp() async throws {
+        try await super.setUp()
+        await MainActor.run {
+            calendar = Calendar(identifier: .gregorian)
+            today = calendar.date(from: DateComponents(year: 2019, month: 10, day: 19))!
+            calendarPicker = TestableCalendarPicker(date: today, calendar: calendar)
+            calendarPicker.frame = CGRect(x: 0, y: 0, width: 375, height: 600)
+            calendarPicker.today = today
+            calendarPicker.calendarHeightMode = .dynamic
+            
+            controller = ExampleViewController(calendarPicker: calendarPicker)
+            
+            callbackDelegate = CallbackDelegate()
+            calendarPicker.delegate = callbackDelegate
+            calendarPicker.layoutIfNeeded()
+        }
     }
 
     override func tearDown() {
@@ -49,7 +51,7 @@ class CalendrPickerCallBackTest: XCTestCase {
         super.tearDown()
     }
 
-    func testCalendarScrollCallbacks() {
+    @MainActor func testCalendarScrollCallbacks() {
         var willScrollCalled = false
         var heightWillChangeCalled = false
         var heightDidChangeCalled = false

@@ -1,4 +1,4 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -7,7 +7,7 @@ let package = Package(
     name: "TTCalendarPicker",
     defaultLocalization: "en",
     platforms: [
-            .iOS(.v13)
+            .iOS(.v17)
         ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -24,17 +24,24 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "TTCalendarPicker",
-            dependencies: ["SnapKit"]),
+            dependencies: ["SnapKit"],
+            swiftSettings: [
+                .enableUpcomingFeature("StrictConcurrency")
+            ]
+        ),
         .testTarget(
             name: "TTCalendarPickerTests",
             dependencies: [
                 "SnapKit",
                 .product(name: "iOSSnapshotTestCase", package: "ios-snapshot-test-case"),
                 "TTCalendarPicker",
-                ]
-            )
+            ],
+            swiftSettings: [
+                .enableUpcomingFeature("StrictConcurrency")
+            ]
+        )
     ],
-    swiftLanguageVersions: [
-        .v5
+    swiftLanguageModes: [
+        .v6
     ]
 )

@@ -15,7 +15,10 @@
 import UIKit
 
 class CalendarPickerViewLayoutAttributes: UICollectionViewLayoutAttributes {
-    var backgroundColor: UIColor = .white
+    // At the moment, there appears to be no workaround for mainactor properties
+    // inside isEqual. But it appears to be a requirement of UICollectionViewLayoutAttributes
+    // https://developer.apple.com/documentation/uikit/uicollectionviewlayoutattributes#1675422
+    nonisolated(unsafe) var backgroundColor: UIColor = .white
 
     override func isEqual(_ object: Any?) -> Bool {
         guard let otherCustom = object as? CalendarPickerViewLayoutAttributes else { return false }
