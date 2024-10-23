@@ -16,9 +16,9 @@ To run the example project, clone the repo then build and run the TTCalendarPick
 
 ## Requirements
 
-- iOS 17.0+
+- iOS 16.0+
 - Xcode 16.0+
-- Swift 6.0+
+- Swift 5.10+
 
 ## Installation
 
