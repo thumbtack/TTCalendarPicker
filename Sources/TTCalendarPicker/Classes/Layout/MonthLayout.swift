@@ -148,7 +148,7 @@ class MonthLayout {
     }()
 
     private lazy var dateOfIndexZero: Date = {
-        let components = DateComponents(day: -firstWeekday + 1)
+        let components = DateComponents(day: -firstWeekday + calendar.firstWeekday)
         return calendar.date(byAdding: components, to: dateOfTheFirst)!
     }()
 
